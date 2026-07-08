@@ -22,4 +22,19 @@ const validateTitle = (title)=>{
     error.status(400);
     throw erro;
   }
+};
+
+exports.getAllTods = () => todos;
+
+exports.createdTodo = ({title})=>{
+  validateTitle(title);
+
+  const newTodo ={
+    id: Date.now(),
+    title: title.trim(),
+    completed: false
+  };
+
+  todos.push(newTodo);
+  return newTodo;
 }
