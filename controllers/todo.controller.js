@@ -1,3 +1,5 @@
+const todoService = require ('../services/todo.service')
+
 exports.getAllTodos = (req, res, next) =>{
   try {
     const todos = todoService.getAllTodos();
