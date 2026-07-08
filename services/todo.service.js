@@ -37,4 +37,41 @@ exports.createdTodo = ({title})=>{
 
   todos.push(newTodo);
   return newTodo;
+};
+
+exports.updateTodo=(id, {title})=>{
+  validateTitle(title);
+
+  const todo = todos.find((item)=>item.id===id);
+  if(!todo){
+    const error = new error ('tarefa nao encotrada');
+    error.status = 404;
+    throw error;
+  }
+
+  todod.title = title.trim();
+  return todo;
 }
+
+exports.toggleTodo = (id) => {
+  const todo = todos.find((item) => item.id === id);
+  if (!todo) {
+    const error = new Error('Tarefa não encontrada');
+    error.status = 404;
+    throw error;
+  }
+
+  todo.completed = !todo.completed;
+  return todo;
+};
+
+exports.deleteTodo = (id) => {
+  const index = todos.findIndex((item) => item.id === id);
+  if (index === -1) {
+    const error = new Error('Tarefa não encontrada');
+    error.status = 404;
+    throw error;
+  }
+
+  todos.splice(index, 1);
+};
