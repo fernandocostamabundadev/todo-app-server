@@ -1,35 +1,22 @@
 let todos = [
-  {
-    id:1,
-    title:'estudar node.js',
-    completed: false,
-  },
-  {
-    id:2,
-    title:'estudar react.js',
-    completed: false,
-  },
-  {
-    id:4,
-    title:'estudar angular.js',
-    completed: true,
-  }
-]
+  { id: 1, title: 'Estudar Node.js', completed: false },
+  { id: 2, title: 'Criar projeto Todo List', completed: true }
+];
 
-const validateTitle = (title)=>{
-  if(!title || typeof title !== 'string' || title.trim() === ''){
-    const error = new error (' o titulo da tarefa e obrigatorio');
-    error.status(400);
-    throw erro;
+const validateTitle = (title) => {
+  if (!title || typeof title !== 'string' || title.trim() === '') {
+    const error = new Error('O título da tarefa é obrigatório');
+    error.status = 400;
+    throw error;
   }
 };
 
-exports.getAllTods = () => todos;
+exports.getAllTodos = () => todos;
 
-exports.createdTodo = ({title})=>{
+exports.createTodo = ({ title }) => {
   validateTitle(title);
 
-  const newTodo ={
+  const newTodo = {
     id: Date.now(),
     title: title.trim(),
     completed: false
@@ -39,19 +26,19 @@ exports.createdTodo = ({title})=>{
   return newTodo;
 };
 
-exports.updateTodo=(id, {title})=>{
+exports.updateTodo = (id, { title }) => {
   validateTitle(title);
 
-  const todo = todos.find((item)=>item.id===id);
-  if(!todo){
-    const error = new error ('tarefa nao encotrada');
+  const todo = todos.find((item) => item.id === id);
+  if (!todo) {
+    const error = new Error('Tarefa não encontrada');
     error.status = 404;
     throw error;
   }
 
-  todod.title = title.trim();
+  todo.title = title.trim();
   return todo;
-}
+};
 
 exports.toggleTodo = (id) => {
   const todo = todos.find((item) => item.id === id);
