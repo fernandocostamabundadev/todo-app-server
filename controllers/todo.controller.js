@@ -44,9 +44,6 @@ exports.deleteTodos = (req, res, next) =>{
   }catch(error){}
 };
 
-
-const todoService = require('../services/todoService');
-
 exports.getAllTodos = (req, res, next) => {
   try {
     const todos = todoService.getAllTodos();
